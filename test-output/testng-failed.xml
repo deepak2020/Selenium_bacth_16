@@ -3,11 +3,12 @@
 <suite name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="page.testFunctionality">
+      <class name="TestMethods.test">
         <methods>
-          <include name="testLoginFunctionality"/>
+          <include name="setup"/>
+          <include name="testRegistration"/>
         </methods>
-      </class> <!-- page.testFunctionality -->
+      </class> <!-- TestMethods.test -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
