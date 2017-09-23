@@ -25,7 +25,7 @@ public class CommonMethods {
 			driver = new FirefoxDriver();
 			driver.get(url);
 		} else if (browserName.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", "C:\\Selenium_Driver\\chromedriver2.31.exe");
+			System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver2.31.exe");
 			driver = new ChromeDriver();
 			driver.get(url);
 		} else if (browserName.equalsIgnoreCase("safari")){
@@ -66,7 +66,7 @@ public class CommonMethods {
 			throws IOException {
 
 		File file = new File(
-				"C:\\Users\\deepak.kumar\\Workspace\\SeleniumDemo_Framework\\config.properties");
+				"config.properties");
 		FileInputStream fileInput = new FileInputStream(file);
 
 		Properties prop = new Properties();
@@ -79,7 +79,7 @@ public class CommonMethods {
 			throws IOException {
 
 		File file = new File(
-				"C:\\Users\\deepak.kumar\\Workspace\\SeleniumDemo_Framework\\test.properties");
+				"test.properties");
 		FileInputStream fileInput = new FileInputStream(file);
 
 		Properties prop = new Properties();
