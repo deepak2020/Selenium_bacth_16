@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -15,9 +16,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CommonMethods {
 	
-	static WebDriver driver;
-	static WebElement element;
-	static WebDriverWait wait;
+	public static WebDriver driver;
+	public static WebElement element;
+	public static WebDriverWait wait;
+	
+	public static Object maximize (){
+		driver.manage().window().maximize();
+		return null;
+	}
 
 	public static WebDriver openBrowser(String browserName, String url) {
 		
@@ -25,13 +31,19 @@ public class CommonMethods {
 			driver = new FirefoxDriver();
 			driver.get(url);
 		} else if (browserName.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver2.31.exe");
+			System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver.exe");
 			driver = new ChromeDriver();
 			driver.get(url);
 		} else if (browserName.equalsIgnoreCase("safari")){
 			driver = new SafariDriver();
 		}
 		return driver;
+		
+	}
+	public static void scrolldown(){
+		
+		((JavascriptExecutor) driver)
+		.executeScript("javascript:window.scrollBy(0,600)");
 	}
 
 	public static WebElement getElement	(String locator, String path) {
@@ -39,8 +51,13 @@ public class CommonMethods {
 		if (locator.equalsIgnoreCase("id")) {
 			element = driver.findElement(By.id(path));
 		} else if (locator.equalsIgnoreCase("name")) {
+			try {
+				Thread.sleep(30);
+			} catch (InterruptedException e){
+				e.printStackTrace();
+			}
 			element = driver.findElement(By.name(path));
-		} if (locator.equalsIgnoreCase("xpath")){
+		} else if (locator.equalsIgnoreCase("xpath")){
 			try {
 				Thread.sleep(30);
 			} catch (InterruptedException e) {
@@ -53,7 +70,7 @@ public class CommonMethods {
 		return element;
 	}
 
-	public void click() {
+	public static void click() {
 		element.click();
 	}
 
