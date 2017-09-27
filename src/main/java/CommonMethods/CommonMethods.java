@@ -3,6 +3,8 @@ package CommonMethods;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Properties;
 
 import org.openqa.selenium.By;
@@ -11,6 +13,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -25,15 +29,27 @@ public class CommonMethods {
 		return null;
 	}
 
-	public static WebDriver openBrowser(String browserName, String url) {
+	public static WebDriver openBrowser(String browserName, String url) throws MalformedURLException {
+		String node1= "http://ankita172:418681cd-6434-49c5-a620-2568e43917c5@ondemand.saucelabs.com:80/wd/hub";
+		// String Node = "http://192.168.0.4:5555/wd/hub";
+			
 		
 		if (browserName.equalsIgnoreCase("firefox")) {
-			driver = new FirefoxDriver();
+			DesiredCapabilities cap =  DesiredCapabilities.firefox();
+			cap.setBrowserName("firefox");
+			cap.setVersion("40.0");
+			driver = new RemoteWebDriver(new URL(node1), cap);
+//			driver = new FirefoxDriver();
 			driver.get(url);
 		} else if (browserName.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver.exe");
-			driver = new ChromeDriver();
+//			System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver.exe");
+//			driver = new ChromeDriver();
+			DesiredCapabilities cap =  DesiredCapabilities.chrome();
+			cap.setBrowserName("chrome");
+			cap.setVersion("60.0");
+			driver = new RemoteWebDriver(new URL(node1), cap);
 			driver.get(url);
+
 		} else if (browserName.equalsIgnoreCase("safari")){
 			driver = new SafariDriver();
 		}
