@@ -14,7 +14,7 @@ public class test extends registration {
 	public static void setup() throws IOException {
 		openBrowser("chrome", CommonMethods.getConfigProperty("URL"));
 		maximize();
-		maximize();
+		
 	}
 
 	@Test
