@@ -22,4 +22,8 @@ public class test extends registration {
 		regisrationFunctionality();
 
 	}
+	
+	public void sum(){
+	
+	}
 }
